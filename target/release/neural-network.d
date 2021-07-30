@@ -1,1 +1,0 @@
-/home/cmiller/Desktop/neural-network/target/release/neural-network: /home/cmiller/Desktop/neural-network/src/main.rs /home/cmiller/Desktop/neural-network/src/matrix.rs /home/cmiller/Desktop/neural-network/src/nn.rs
