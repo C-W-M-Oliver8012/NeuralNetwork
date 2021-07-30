@@ -107,6 +107,18 @@ impl Matrix {
         Ok(m)
     }
 
+    pub fn transpose(a: &Matrix) -> Matrix {
+        let mut m = Matrix::new(a.columns, a.rows);
+
+        for i in 0..a.rows {
+            for j in 0..a.columns {
+                m.matrix[j][i] = a.matrix[i][j];
+            }
+        }
+
+        m
+    }
+
     pub fn randomize(&mut self) {
         for i in 0..self.rows {
             for j in 0..self.columns {
@@ -142,5 +154,13 @@ pub fn leaky_relu(x: f64) -> f64 {
         return x;
     } else {
         return x * 0.1;
+    }
+}
+
+pub fn leaky_relu_derivative(x: f64) -> f64 {
+    if x >= 0.0 {
+        return 1.0;
+    } else {
+        return 0.1;
     }
 }
