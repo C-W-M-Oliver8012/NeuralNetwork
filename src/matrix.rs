@@ -107,6 +107,22 @@ impl Matrix {
         Ok(m)
     }
 
+    pub fn hadamard_product(a: &Matrix, b: &Matrix) -> Result<Matrix, &'static str> {
+        if a.rows != b.rows || a.columns != b.columns {
+            return Err("Matrix rows and columns must match.");
+        }
+
+        let mut m = Matrix::new(a.rows, a.columns);
+
+        for i in 0..a.rows {
+            for j in 0..a.columns {
+                m.matrix[i][j] = a.matrix[i][j] * b.matrix[i][j];
+            }
+        }
+
+        Ok(m)
+    }
+
     pub fn transpose(a: &Matrix) -> Matrix {
         let mut m = Matrix::new(a.columns, a.rows);
 
