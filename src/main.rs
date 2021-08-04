@@ -5,8 +5,22 @@ use crate::nn::NeuralNetwork;
 use crate::matrix::Matrix;
 
 fn main() {
-    let mut nn = NeuralNetwork::new(vec![2, 4, 4, 1]).unwrap();
+    let mut nn = NeuralNetwork::new(vec![2, 20, 20, 20, 4, 1], 0.00001).unwrap();
 
+    let mut input = Matrix::new(1, 2);
+    input.set_matrix(vec![vec![-9.3, 10.4]]).unwrap();
+
+    let mut target = Matrix::new(1, 1);
+    target.set_matrix(vec![vec![1.0]]).unwrap();
+
+    for _i in 0..10000 {
+        nn.backpropagation(&input, &target).unwrap();
+    }
+
+    let output = nn.feedforward(&input).unwrap();
+    output.print_matrix();
+
+    /*
     let mut inputs: Vec<Matrix> = Vec::new();
     let mut targets: Vec<Matrix> = Vec::new();
     for _i in 0..4 {
@@ -26,7 +40,7 @@ fn main() {
 
     for _i in 0..90000 {
         for j in 0..4 {
-            nn.backpropagation(&inputs[j], &targets[j], 0.001).unwrap();
+            nn.backpropagation(&inputs[j], &targets[j]).unwrap();
         }
     }
 
@@ -40,4 +54,5 @@ fn main() {
         let output = nn.feedforward(&inputs[i]).unwrap();
         output.print_matrix();
     }
+    */
 }
